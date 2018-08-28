@@ -1,0 +1,3 @@
+[submodule "rasa-ui"]
+	path = rasa-ui
+	url = https://github.com/paschmann/rasa-ui.git

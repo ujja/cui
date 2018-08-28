@@ -40,7 +40,19 @@ services:
       - ./rasa-nlu/projects:/app/projects
     depends_on:
       - duckling
-    
+
+  rasa-ui:
+    build:
+      context: ./rasa-ui
+      dockerfile: Dockerfile
+    environment:
+      - rasanluendpoint=http://rasa-nlu:5000
+      - rasacoreendpoint=http://rasa-core:5005
+    ports:
+      - "5001:5001"
+    depends_on:
+      - rasa-nlu
+
   rasa-nlu-training:
     build:
       context: ./rasa-nlu

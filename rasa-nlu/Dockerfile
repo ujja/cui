@@ -2,6 +2,9 @@ FROM python:3.6-slim
 
 SHELL ["/bin/bash", "-c"]
 
+# required for Java
+# see https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=863199
+RUN mkdir -p /usr/share/man/man1
 RUN apt-get update -qq && apt-get install -y --no-install-recommends \
     build-essential \
     git-core \
@@ -11,6 +14,8 @@ RUN apt-get update -qq && apt-get install -y --no-install-recommends \
     libffi-dev \
     curl \
 	cron \
+#required for duckling.
+    default-jre \
  && apt-get clean \
  && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
